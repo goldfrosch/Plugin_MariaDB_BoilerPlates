@@ -18,7 +18,7 @@ public class Commands extends AbstractCommand{
 
   @Override
   public boolean onCommand(CommandSender sender, org.bukkit.command.Command command, String label, String[] args) {
-    String prefix = plugin.getConfig().getString("Message.Prefix").replace("&", "§");
+    String prefix = plugin.getConfig().getString("message.prefix").replace("&", "§");
     if (sender instanceof Player) {
       Player player = (Player) sender;
       if(label.equalsIgnoreCase("cmd")){

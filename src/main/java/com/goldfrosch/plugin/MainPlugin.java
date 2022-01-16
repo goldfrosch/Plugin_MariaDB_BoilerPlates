@@ -7,9 +7,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import org.mariadb.jdbc.MariaDbPoolDataSource;
+
+import javax.sql.DataSource;
+import java.sql.SQLException;
+
 public class MainPlugin extends JavaPlugin implements Listener {
-  PluginDescriptionFile pdfFile = this.getDescription();
-  String pfName = pdfFile.getName() + " v" + pdfFile.getVersion();
+  private PluginDescriptionFile pdfFile = this.getDescription();
+  private String pfName = pdfFile.getName() + " v" + pdfFile.getVersion();
+  private DataSource dataSource;
+
+
 
   @Override
   public void onEnable(){
@@ -40,4 +48,5 @@ public class MainPlugin extends JavaPlugin implements Listener {
   public void consoleLog(String msg){
     getLogger().info(msg);
   }
+
 }

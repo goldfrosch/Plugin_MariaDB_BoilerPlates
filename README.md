@@ -1,2 +1,7 @@
-# Moa Plugin
-웬 죄다 모아냐 뭘 모을래
+# GoldCash Plugin
+
+Version: Spigot 1.16.3
+
+Java 16, Maven
+
+Cash Management Plugin
