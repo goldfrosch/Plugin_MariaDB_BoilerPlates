@@ -1,11 +1,12 @@
 package com.goldfrosch.plugin.config;
 
+import com.goldfrosch.plugin.config.object.Database;
 import org.bukkit.plugin.Plugin;
 
 public class Configuration {
     private final Plugin plugin;
 
-//    private Database database;
+    private Database database;
     private String driver;
 
     public Configuration(Plugin plugin) {
@@ -13,7 +14,7 @@ public class Configuration {
     }
 
     public void reload() {
-//        database = plugin.getConfig().getObject("database", Database.class, new Database());
+        database = plugin.getConfig().getObject("database", Database.class, new Database());
         driver = plugin.getConfig().getString("driver");
     }
 
@@ -23,5 +24,9 @@ public class Configuration {
 
     public String getDriver() {
         return driver;
+    }
+
+    public Database getDatabase() {
+        return database;
     }
 }
