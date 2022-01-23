@@ -9,7 +9,7 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class MariaDBConverter {
+public class DBConverter {
     public static DataSource initMariaDBDataSource(Plugin plugin, Database database) throws SQLException  {
         //MariaDB 연동 선언
         MariaDbPoolDataSource dataSource = new MariaDbPoolDataSource();

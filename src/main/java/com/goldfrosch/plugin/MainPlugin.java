@@ -3,7 +3,7 @@ package com.goldfrosch.plugin;
 import com.goldfrosch.plugin.commands.Commands;
 import com.goldfrosch.plugin.config.Configuration;
 import com.goldfrosch.plugin.config.object.Database;
-import com.goldfrosch.plugin.converter.MariaDBConverter;
+import com.goldfrosch.plugin.converter.DBConverter;
 import com.goldfrosch.plugin.events.NewEvent;
 
 import org.bukkit.Bukkit;
@@ -39,7 +39,7 @@ public class MainPlugin extends JavaPlugin implements Listener {
 
     //sql convert
     try {
-      dataSource = MariaDBConverter.initMariaDBDataSource(this, config.getDatabase());
+      dataSource = DBConverter.initMariaDBDataSource(this, config.getDatabase());
       consoleLog("성공적으로 연결되었습니다");
     } catch (SQLException e) {
       consoleDanger("데이터 베이스 연동 실패", e);
