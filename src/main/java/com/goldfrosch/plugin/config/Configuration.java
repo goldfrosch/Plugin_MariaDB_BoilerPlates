@@ -11,6 +11,12 @@ public class Configuration {
 
     public Configuration(Plugin plugin) {
         this.plugin = plugin;
+        reload();
+    }
+
+    public void reload() {
+        database = plugin.getConfig().getObject("database", Database.class, new Database());
+        driver = plugin.getConfig().getString("driver");
     }
 
     public Plugin getPlugin() {

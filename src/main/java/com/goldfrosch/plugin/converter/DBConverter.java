@@ -16,7 +16,7 @@ public class DBConverter {
 
         //MariaDB 연결 설정
         dataSource.setServerName(database.getHost());
-        dataSource.setPassword(database.getPassword());
+        dataSource.setPassword(String.valueOf(database.getPassword()));
         dataSource.setPortNumber(database.getPort());
         dataSource.setDatabaseName(database.getDatabase());
         dataSource.setUser(database.getUser());
