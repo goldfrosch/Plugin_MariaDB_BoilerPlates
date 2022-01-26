@@ -3,7 +3,8 @@ package com.goldfrosch.plugin;
 import com.goldfrosch.plugin.commands.Commands;
 import com.goldfrosch.plugin.config.Configuration;
 import com.goldfrosch.plugin.config.object.Database;
-import com.goldfrosch.plugin.converter.DBConverter;
+import com.goldfrosch.plugin.database.DBConverter;
+import com.goldfrosch.plugin.database.DBSetup;
 import com.goldfrosch.plugin.events.NewEvent;
 
 import org.bukkit.Bukkit;
@@ -13,6 +14,7 @@ import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
@@ -39,12 +41,22 @@ public class MainPlugin extends JavaPlugin implements Listener {
 
     //sql convert
     try {
-      dataSource = DBConverter.initMariaDBDataSource(this, config.getDatabase());
-      consoleLog("성공적으로 연결되었습니다");
+      if(config.getDriver().equalsIgnoreCase("mariadb")) {
+        dataSource = DBConverter.initMariaDBDataSource(this, config.getDatabase());
+        consoleLog("성공적으로 연결되었습니다");
+      }
     } catch (SQLException e) {
       consoleDanger("데이터 베이스 연동 실패", e);
       getServer().getPluginManager().disablePlugin(this);
       return;
+    }
+
+    //sql check table
+    try {
+      DBSetup.initDB(this, dataSource);
+    } catch (SQLException | IOException e) {
+      consoleDanger("에러 발생", e);
+      getServer().getPluginManager().disablePlugin(this);
     }
 
     //command
