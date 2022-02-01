@@ -19,7 +19,7 @@ public class DBSetup {
         String setup = "";
 
         //특정 이름의 파일 값을 클래스에 로드하는 방법
-        try(InputStream inputStream = DBSetup.class.getClassLoader().getResourceAsStream("dbsetup.sql")) {
+        try(InputStream inputStream = DBSetup.class.getClassLoader().getResourceAsStream("setup.sql")) {
             //파일을 불러와서 엔터마다 한줄로 조인시키는 듯함
             setup = new BufferedReader(new InputStreamReader(inputStream)).lines().collect(Collectors.joining("\n"));
         } catch (IOException e) {

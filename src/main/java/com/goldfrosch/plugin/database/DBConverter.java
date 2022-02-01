@@ -11,14 +11,6 @@ import java.sql.SQLException;
 
 public class DBConverter {
     public static DataSource initMariaDBDataSource(Plugin plugin, Database database) throws SQLException  {
-        //test
-        plugin.getLogger().info(String.valueOf(database.getHost()));
-        plugin.getLogger().info(String.valueOf(database.getDatabase()));
-
-        plugin.getLogger().info(String.valueOf(database.getPort()));
-        plugin.getLogger().info(String.valueOf(database.getUser()));
-        plugin.getLogger().info(String.valueOf(database.getPassword()));
-
         //MariaDB 연동 선언
         MariaDbPoolDataSource dataSource = new MariaDbPoolDataSource();
 
