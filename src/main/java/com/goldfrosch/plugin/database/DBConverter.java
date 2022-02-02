@@ -16,7 +16,7 @@ public class DBConverter {
 
         //MariaDB 연결 설정
         dataSource.setServerName(database.getHost());
-        dataSource.setPassword(String.valueOf(database.getPassword()));
+        dataSource.setPassword(database.getPassword());
         dataSource.setPortNumber(database.getPort());
         dataSource.setDatabaseName(database.getDatabase());
         dataSource.setUser(database.getUser());
@@ -33,7 +33,7 @@ public class DBConverter {
 
     public static void testDataSource(Plugin plugin, DataSource dataSource) throws SQLException {
         try (Connection conn = dataSource.getConnection()) {
-            if(conn.isValid(1000)) {
+            if(!conn.isValid(1000)) {
                 throw new SQLException("데이터베이스 연결 실패");
             }
         }
