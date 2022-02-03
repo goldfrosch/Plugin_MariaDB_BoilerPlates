@@ -1,4 +1,4 @@
-package com.goldfrosch.plugin.utils;
+package com.goldfrosch.plugin.database.utils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -26,6 +26,10 @@ public final class AsyncScheduler<T> {
     //Throwable 객체를 이용해서 void형식으로 return해 특정 메소드를 실행시키는 방식이
     //Consumer<T>인거 같다.
     private static Consumer<Throwable> getDangerLog(Plugin plugin) {
-        return e -> plugin.getLogger().log(Level.SEVERE, plugin.getName() + " generated an exception in a BukkitAsyncAction.", e);
+        return e -> plugin.getLogger().log(Level.SEVERE, plugin.getName() + " generated an exception in a AsyncScheduler.", e);
+    }
+
+    public static <T> AsyncScheduler<T> supplyAsync(Plugin plugin, Supplier<T> asyncSupplier) {
+        return new AsyncScheduler<>(plugin, asyncSupplier, getDangerLog(plugin));
     }
 }
